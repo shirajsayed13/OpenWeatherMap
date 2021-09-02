@@ -1,7 +1,9 @@
 package com.shiraj.gui
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
+import androidx.core.content.ContextCompat
 import androidx.viewbinding.ViewBinding
 import com.shiraj.base.activity.BaseActivity
 import com.shiraj.gui.databinding.ActivityOpenWeatherMapBinding
@@ -21,5 +23,8 @@ internal class OpenWeatherMapActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.statusBarColor = ContextCompat.getColor(this, android.R.color.transparent)
+        }
     }
 }

@@ -18,7 +18,8 @@ class WeatherInfoAdapter @Inject constructor() :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(info: WeatherInfoView) {
             binding.tvDay.text = info.day
-            binding.tvTemp.text = "${info.temperature} C"
+            val temp = "${info.temperature} \u2103"
+            binding.tvTemp.text = temp
         }
     }
 

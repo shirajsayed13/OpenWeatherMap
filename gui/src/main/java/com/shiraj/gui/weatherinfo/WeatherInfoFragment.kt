@@ -11,6 +11,7 @@ import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
@@ -28,6 +29,7 @@ import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
+
 
 @AndroidEntryPoint
 class WeatherInfoFragment : BaseFragment() {
@@ -73,6 +75,8 @@ class WeatherInfoFragment : BaseFragment() {
 
     private fun showWeatherInfo(weatherInfo: List<WeatherInfoModel>) {
         val weatherInfoViews = mutableListOf<WeatherInfoView>()
+        val temp = "${((weatherInfo[0].main.temp - 273.15).toInt())}\u2103"
+        binding.tvTemp.text = temp
         weatherInfo.forEach {
             val d = it.dtTxt.split(" ")[0]
             weatherInfoViews.add(WeatherInfoView(getDate(d), (it.main.temp - 273.15).toInt()))
