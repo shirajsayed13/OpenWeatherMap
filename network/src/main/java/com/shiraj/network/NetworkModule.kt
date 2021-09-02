@@ -3,7 +3,12 @@ package com.shiraj.network
 import android.content.Context
 import android.net.ConnectivityManager
 import androidx.viewbinding.BuildConfig
-import com.shiraj.core.ListingWebService
+import com.shiraj.core.webservice.ListingWebService
+import com.shiraj.network.framework.AndroidNetworkConnectionMonitor
+import com.shiraj.network.framework.NetworkConnectionMonitor
+import com.shiraj.network.framework.NetworkConnectionMonitorInterceptor
+import com.shiraj.network.service.listing.AppListingWebService
+import com.shiraj.network.service.listing.RetrofitListingWebService
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

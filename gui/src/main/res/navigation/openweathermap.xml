@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/weatherInfoFragment"
-        android:name="com.shiraj.gui.WeatherInfoFragment"
+        android:name="com.shiraj.gui.weatherinfo.WeatherInfoFragment"
         android:label="fragment_weather_info"
         tools:layout="@layout/fragment_weather_info" />
 </navigation>

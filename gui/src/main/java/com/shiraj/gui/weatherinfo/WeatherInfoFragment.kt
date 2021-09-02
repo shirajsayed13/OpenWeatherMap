@@ -1,4 +1,4 @@
-package com.shiraj.gui
+package com.shiraj.gui.weatherinfo
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,7 +9,9 @@ import androidx.viewbinding.ViewBinding
 import com.shiraj.base.failure
 import com.shiraj.base.fragment.BaseFragment
 import com.shiraj.base.observe
-import com.shiraj.core.WebServiceFailure
+import com.shiraj.core.webservice.WebServiceFailure
+import com.shiraj.gui.AppToast
+import com.shiraj.gui.R
 import com.shiraj.gui.databinding.FragmentWeatherInfoBinding
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber

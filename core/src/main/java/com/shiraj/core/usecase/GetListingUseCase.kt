@@ -1,5 +1,7 @@
-package com.shiraj.core
+package com.shiraj.core.usecase
 
+import com.shiraj.core.webservice.ListingWebService
+import com.shiraj.core.model.ListingItem
 import javax.inject.Inject
 
 class GetListingUseCase @Inject constructor(

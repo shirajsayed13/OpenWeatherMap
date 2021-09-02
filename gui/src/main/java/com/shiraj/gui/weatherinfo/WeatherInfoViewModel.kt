@@ -1,10 +1,10 @@
-package com.shiraj.gui
+package com.shiraj.gui.weatherinfo
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.shiraj.base.viewmodel.BaseViewModel
-import com.shiraj.core.GetListingUseCase
-import com.shiraj.core.ListingItem
+import com.shiraj.core.usecase.GetListingUseCase
+import com.shiraj.core.model.ListingItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import timber.log.Timber
 import javax.inject.Inject

@@ -1,7 +1,9 @@
-package com.shiraj.network
+package com.shiraj.network.service.listing
 
-import com.shiraj.core.ListingItem
-import com.shiraj.core.ListingWebService
+import com.shiraj.core.model.ListingItem
+import com.shiraj.core.webservice.ListingWebService
+import com.shiraj.network.networkCall
+import com.shiraj.network.response.toMainList
 import javax.inject.Inject
 
 internal class AppListingWebService @Inject constructor(

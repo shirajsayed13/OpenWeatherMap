@@ -1,8 +1,8 @@
-package com.shiraj.network
+package com.shiraj.network.response
 
 
-import com.shiraj.core.ListingItem
-import com.shiraj.core.Main
+import com.shiraj.core.model.ListingItem
+import com.shiraj.core.model.Main
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 

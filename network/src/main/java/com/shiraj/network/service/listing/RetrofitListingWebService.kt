@@ -1,5 +1,6 @@
-package com.shiraj.network
+package com.shiraj.network.service.listing
 
+import com.shiraj.network.response.TemperatureListingResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
