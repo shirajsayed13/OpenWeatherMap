@@ -25,6 +25,8 @@ import com.shiraj.gui.R
 import com.shiraj.gui.databinding.FragmentWeatherInfoBinding
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -70,21 +72,35 @@ class WeatherInfoFragment : BaseFragment() {
     }
 
     private fun showWeatherInfo(weatherInfo: List<WeatherInfoModel>) {
+        val weatherInfoViews = mutableListOf<WeatherInfoView>()
+        weatherInfo.forEach {
+            val d = it.dtTxt.split(" ")[0]
+            weatherInfoViews.add(WeatherInfoView(getDate(d), (it.main.temp - 273.15).toInt()))
+        }
+
         with(BottomSheetDialog(binding.root.context, R.style.AppBottomSheetDialogTheme)) {
             setContentView(R.layout.bottomsheet_temperatures)
-            window?.setBackgroundDrawableResource(android.R.color.transparent)
 
             findViewById<RecyclerView>(R.id.rvWeatherInfo)?.apply {
                 this.layoutManager =
-                    LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                    LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                 adapter = weatherInfoAdapter
-                weatherInfoAdapter.info = weatherInfo
+                weatherInfoAdapter.info = weatherInfoViews
             }
             show()
-            binding.ivRotatingLogo.clearAnimation()
-            binding.llLoading.visibility = GONE
-            binding.llMain.visibility = VISIBLE
+            binding.apply {
+                ivRotatingLogo.clearAnimation()
+                llLoading.visibility = GONE
+                llMain.visibility = VISIBLE
+                llError.visibility = GONE
+            }
         }
+    }
+
+    private fun getDate(yourDate: String): String {
+        val date = SimpleDateFormat("dd-MM-yyyy").parse(yourDate)
+        val dayWeekText = SimpleDateFormat("EEEE", Locale.getDefault()).format(date)
+        return dayWeekText.toString()
     }
 
     private fun showErrorScreen() {

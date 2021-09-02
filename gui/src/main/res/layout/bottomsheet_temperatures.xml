@@ -8,10 +8,11 @@
     android:clickable="true"
     android:fitsSystemWindows="true"
     android:focusable="true"
+    android:background="@color/white"
     app:behavior_draggable="true"
     app:behavior_fitToContents="true"
     app:behavior_hideable="false"
-    app:behavior_peekHeight="170dp"
+    app:behavior_peekHeight="100dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
 
