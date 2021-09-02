@@ -17,8 +17,8 @@ class WeatherInfoViewModel @Inject constructor(
     private val _feedItems: MutableLiveData<List<ListingItem>> by lazy { MutableLiveData() }
     internal val feedItems: LiveData<List<ListingItem>> = _feedItems
 
-    internal fun loadListing() {
-        Timber.d("loadListing: ")
+    internal fun loadWeatherInfo() {
+        Timber.d("loadWeatherInfo: ")
         launchUseCase {
             _feedItems.postValue(getListingUseCase())
         }
