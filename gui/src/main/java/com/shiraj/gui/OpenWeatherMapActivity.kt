@@ -8,7 +8,7 @@ import com.shiraj.gui.databinding.ActivityOpenWeatherMapBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-internal class OpenWeatherMapActivity() : BaseActivity() {
+internal class OpenWeatherMapActivity : BaseActivity() {
 
     override val layoutResId: Int
         get() = R.layout.activity_open_weather_map

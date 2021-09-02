@@ -17,7 +17,8 @@ android {
         versionCode 1
         versionName "1.0"
 
-        buildConfigField("String", "API_BASE_URL", "\"https://demo3320392.mockable.io/api/v1.0/\"")
+        buildConfigField "String", "API_BASE_URL", "\"https://api.openweathermap.org/data/2.5/\""
+        buildConfigField "String", "Open_Weather_AppId", "\"9b8cb8c7f11c077f8c4e217974d9ee40\""
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
