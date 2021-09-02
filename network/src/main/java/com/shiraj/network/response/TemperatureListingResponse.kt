@@ -1,12 +1,12 @@
 package com.shiraj.network.response
 
 
-import com.shiraj.core.model.ListingItem
+import com.shiraj.core.model.WeatherInfoModel
 import com.shiraj.core.model.Main
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
-internal fun TemperatureListingResponse.MainList.toMainList() = ListingItem(
+internal fun TemperatureListingResponse.MainList.toMainList() = WeatherInfoModel(
     dt = dt,
     dtTxt = dtTxt,
     main = main.toMainTemperature()

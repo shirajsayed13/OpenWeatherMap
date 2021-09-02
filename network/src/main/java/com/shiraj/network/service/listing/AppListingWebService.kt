@@ -1,6 +1,6 @@
 package com.shiraj.network.service.listing
 
-import com.shiraj.core.model.ListingItem
+import com.shiraj.core.model.WeatherInfoModel
 import com.shiraj.core.webservice.ListingWebService
 import com.shiraj.network.networkCall
 import com.shiraj.network.response.toMainList
@@ -10,7 +10,7 @@ internal class AppListingWebService @Inject constructor(
     private val listingWebService: RetrofitListingWebService
 ) : ListingWebService {
 
-    override suspend fun getListItems(): List<ListingItem> = networkCall(
+    override suspend fun getListItems(): List<WeatherInfoModel> = networkCall(
         { listingWebService.getListing("Bengaluru", "9b8cb8c7f11c077f8c4e217974d9ee40") },
         { response -> response.mainList.map { it.toMainList() } }
     )

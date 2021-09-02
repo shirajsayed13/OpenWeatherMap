@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class ListingItem(
+data class WeatherInfoModel(
     val dt: Int,
     val dtTxt: String,
     val main: Main

@@ -18,7 +18,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.shiraj.base.failure
 import com.shiraj.base.fragment.BaseFragment
 import com.shiraj.base.observe
-import com.shiraj.core.model.ListingItem
+import com.shiraj.core.model.WeatherInfoModel
 import com.shiraj.core.webservice.WebServiceFailure
 import com.shiraj.gui.AppToast
 import com.shiraj.gui.R
@@ -57,6 +57,9 @@ class WeatherInfoFragment : BaseFragment() {
 
         binding.apply {
             ivRotatingLogo.startAnimation(AnimationUtils.loadAnimation(context, R.anim.clockwise))
+            btnRetry.setOnClickListener {
+                viewModel.loadWeatherInfo()
+            }
         }
 
         viewModel.apply {
@@ -66,7 +69,7 @@ class WeatherInfoFragment : BaseFragment() {
         }
     }
 
-    private fun showWeatherInfo(weatherInfo: List<ListingItem>) {
+    private fun showWeatherInfo(weatherInfo: List<WeatherInfoModel>) {
         with(BottomSheetDialog(binding.root.context, R.style.AppBottomSheetDialogTheme)) {
             setContentView(R.layout.bottomsheet_temperatures)
             window?.setBackgroundDrawableResource(android.R.color.transparent)
@@ -84,6 +87,15 @@ class WeatherInfoFragment : BaseFragment() {
         }
     }
 
+    private fun showErrorScreen() {
+        binding.apply {
+            ivRotatingLogo.clearAnimation()
+            llLoading.visibility = GONE
+            llMain.visibility = GONE
+            llError.visibility = VISIBLE
+        }
+    }
+
     private fun handleFailure(e: Exception?) {
         Timber.v("handleFailure: IN")
         Timber.e(e)
@@ -92,7 +104,10 @@ class WeatherInfoFragment : BaseFragment() {
             is WebServiceFailure.NetworkTimeOutFailure, is WebServiceFailure.NetworkDataFailure -> showErrorToast(
                 "Internal server error!"
             )
-            else -> showErrorToast("Unknown error occurred!")
+            else -> {
+                showErrorScreen()
+                showErrorToast("Unknown error occurred!")
+            }
         }
         Timber.v("handleFailure: OUT")
     }

@@ -1,14 +1,14 @@
 package com.shiraj.core.usecase
 
 import com.shiraj.core.webservice.ListingWebService
-import com.shiraj.core.model.ListingItem
+import com.shiraj.core.model.WeatherInfoModel
 import javax.inject.Inject
 
-class GetListingUseCase @Inject constructor(
+class GetWeatherInfoUseCase @Inject constructor(
     private val listingWebService: ListingWebService
 ) {
 
-    suspend operator fun invoke(): List<ListingItem> {
+    suspend operator fun invoke(): List<WeatherInfoModel> {
         return listingWebService.getListItems()
     }
 }
