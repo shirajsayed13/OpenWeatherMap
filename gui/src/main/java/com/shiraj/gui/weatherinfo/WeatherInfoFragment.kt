@@ -57,7 +57,6 @@ class WeatherInfoFragment : BaseFragment() {
             PropertyValuesHolder.ofFloat("scaleX", 0.9f),
             PropertyValuesHolder.ofFloat("scaleY", 0.9f)
         ).apply {
-            duration = 5_000
             repeatMode = ValueAnimator.REVERSE
             repeatCount = ValueAnimator.INFINITE
             start()
