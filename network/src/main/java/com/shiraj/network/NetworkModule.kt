@@ -3,12 +3,12 @@ package com.shiraj.network
 import android.content.Context
 import android.net.ConnectivityManager
 import androidx.viewbinding.BuildConfig
-import com.shiraj.core.webservice.ListingWebService
+import com.shiraj.core.webservice.WeatherInfoWS
 import com.shiraj.network.framework.AndroidNetworkConnectionMonitor
 import com.shiraj.network.framework.NetworkConnectionMonitor
 import com.shiraj.network.framework.NetworkConnectionMonitorInterceptor
-import com.shiraj.network.service.listing.AppListingWebService
-import com.shiraj.network.service.listing.RetrofitListingWebService
+import com.shiraj.network.service.listing.AppWeatherInfoWS
+import com.shiraj.network.service.listing.RetrofitWeatherInfoWebService
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -77,8 +77,8 @@ internal object NetworkModule {
 
     @Provides
     @Singleton
-    internal fun provideRetrofitListingWebService(retrofit: Retrofit): RetrofitListingWebService =
-        retrofit.create(RetrofitListingWebService::class.java)
+    internal fun provideRetrofitListingWebService(retrofit: Retrofit): RetrofitWeatherInfoWebService =
+        retrofit.create(RetrofitWeatherInfoWebService::class.java)
 
 
     @Module
@@ -86,7 +86,7 @@ internal object NetworkModule {
     internal interface AppWebService {
         @Binds
         @Singleton
-        abstract fun bindListingWebService(service: AppListingWebService): ListingWebService
+        abstract fun bindListingWebService(service: AppWeatherInfoWS): WeatherInfoWS
     }
 
 }

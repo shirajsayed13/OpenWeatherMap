@@ -11,7 +11,6 @@ import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
@@ -24,10 +23,9 @@ import com.shiraj.core.webservice.WebServiceFailure
 import com.shiraj.gui.AppToast
 import com.shiraj.gui.R
 import com.shiraj.gui.databinding.FragmentWeatherInfoBinding
+import com.shiraj.gui.getDate
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
-import java.text.SimpleDateFormat
-import java.util.*
 import javax.inject.Inject
 
 
@@ -49,6 +47,12 @@ class WeatherInfoFragment : BaseFragment() {
     private val viewModel: WeatherInfoViewModel by viewModels()
 
     override fun onInitView() {
+        binding.apply {
+            llLoading.visibility = VISIBLE
+            llMain.visibility = GONE
+            llError.visibility = GONE
+        }
+
         ObjectAnimator.ofPropertyValuesHolder(
             PropertyValuesHolder.ofFloat("scaleX", 0.9f),
             PropertyValuesHolder.ofFloat("scaleY", 0.9f)
@@ -99,12 +103,6 @@ class WeatherInfoFragment : BaseFragment() {
                 llError.visibility = GONE
             }
         }
-    }
-
-    private fun getDate(yourDate: String): String {
-        val date = SimpleDateFormat("dd-MM-yyyy").parse(yourDate)
-        val dayWeekText = SimpleDateFormat("EEEE", Locale.getDefault()).format(date)
-        return dayWeekText.toString()
     }
 
     private fun showErrorScreen() {

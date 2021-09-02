@@ -6,18 +6,18 @@ import com.shiraj.core.model.Main
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
-internal fun TemperatureListingResponse.MainList.toMainList() = WeatherInfoModel(
+internal fun WeatherInfoResponse.MainList.toMainList() = WeatherInfoModel(
     dt = dt,
     dtTxt = dtTxt,
     main = main.toMainTemperature()
 )
 
-internal fun TemperatureListingResponse.MainList.Main.toMainTemperature() = Main(
+internal fun WeatherInfoResponse.MainList.Main.toMainTemperature() = Main(
     temp = temp
 )
 
 @JsonClass(generateAdapter = true)
-data class TemperatureListingResponse(
+data class WeatherInfoResponse(
     @Json(name = "cnt")
     val cnt: Int,
     @Json(name = "cod")

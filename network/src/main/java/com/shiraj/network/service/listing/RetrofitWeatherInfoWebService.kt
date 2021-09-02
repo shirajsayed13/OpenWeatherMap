@@ -1,14 +1,14 @@
 package com.shiraj.network.service.listing
 
-import com.shiraj.network.response.TemperatureListingResponse
+import com.shiraj.network.response.WeatherInfoResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-internal interface RetrofitListingWebService {
+internal interface RetrofitWeatherInfoWebService {
 
     @GET("forecast")
-    suspend fun getListing(
+    suspend fun getWeatherInfoWebService(
         @Query("q", encoded = true) query: String,
         @Query("APPID", encoded = true) appId: String,
-    ): TemperatureListingResponse
+    ): WeatherInfoResponse
 }
