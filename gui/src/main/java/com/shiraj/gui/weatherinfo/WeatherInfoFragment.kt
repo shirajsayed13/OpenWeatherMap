@@ -98,7 +98,7 @@ class WeatherInfoFragment : BaseFragment() {
     }
 
     private fun modifyData(weatherInfo: List<WeatherInfoModel>): MutableList<WeatherInfoView> {
-        val temp = "${((weatherInfo[0].main.temp - 273.15).toInt())}\u2103"
+        val temp = "${((weatherInfo[0].main.temp - 273.15).toInt())}\u00B0"
         binding.tvTemp.text = temp
         val weatherInfoViews = mutableListOf<WeatherInfoView>()
         val multiValueMap: MutableMap<String, ArrayList<Int>> = mutableMapOf()
