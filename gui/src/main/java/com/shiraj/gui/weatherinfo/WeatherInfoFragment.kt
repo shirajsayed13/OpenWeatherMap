@@ -77,14 +77,7 @@ class WeatherInfoFragment : BaseFragment() {
     }
 
     private fun showWeatherInfo(weatherInfo: List<WeatherInfoModel>) {
-        val weatherInfoViews = mutableListOf<WeatherInfoView>()
-        val temp = "${((weatherInfo[0].main.temp - 273.15).toInt())}\u2103"
-        binding.tvTemp.text = temp
-        weatherInfo.forEach {
-            val d = it.dtTxt.split(" ")[0]
-            weatherInfoViews.add(WeatherInfoView(getDate(d), (it.main.temp - 273.15).toInt()))
-        }
-
+        val weatherInfoViews = modifyData(weatherInfo)
         with(BottomSheetDialog(binding.root.context, R.style.AppBottomSheetDialogTheme)) {
             setContentView(R.layout.bottomsheet_temperatures)
 
@@ -102,6 +95,31 @@ class WeatherInfoFragment : BaseFragment() {
                 llError.visibility = GONE
             }
         }
+    }
+
+    private fun modifyData(weatherInfo: List<WeatherInfoModel>): MutableList<WeatherInfoView> {
+        val temp = "${((weatherInfo[0].main.temp - 273.15).toInt())}\u2103"
+        binding.tvTemp.text = temp
+        val weatherInfoViews = mutableListOf<WeatherInfoView>()
+        val multiValueMap: MutableMap<String, ArrayList<Int>> = mutableMapOf()
+        var previousValue = ""
+        weatherInfo.forEach {
+            val deTxtValue = it.dtTxt.split(" ")[0]
+            val day = getDate(deTxtValue)
+            val tempValue = (it.main.temp - 273.15).toInt()
+            if (previousValue != day) {
+                multiValueMap[day] = ArrayList()
+                multiValueMap[day]!!.add(tempValue)
+                previousValue = day
+            } else {
+                multiValueMap[day]!!.add(tempValue)
+            }
+        }
+        multiValueMap.forEach {
+            weatherInfoViews.add(WeatherInfoView(it.key, it.value.average().toInt()))
+        }
+        println("CHECK THIS date weatherInfoViews $weatherInfoViews.")
+        return weatherInfoViews
     }
 
     private fun showErrorScreen() {
@@ -123,7 +141,6 @@ class WeatherInfoFragment : BaseFragment() {
             )
             else -> {
                 showErrorScreen()
-                showErrorToast("Unknown error occurred!")
             }
         }
         Timber.v("handleFailure: OUT")
